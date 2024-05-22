@@ -31,6 +31,7 @@ import androidx.compose.ui.zIndex
 import androidx.constraintlayout.compose.ConstraintLayout
 import com.topic3.android.reddit.R
 import com.topic3.android.reddit.models.SubredditModel
+import androidx.compose.material.icons.Icons
 
 val subreddits = listOf(
     SubredditModel(
@@ -74,7 +75,15 @@ fun SubredditsScreen(modifier: Modifier = Modifier) {
 
 @Composable
 fun Subreddit(subredditModel: SubredditModel, modifier: Modifier = Modifier) {
-    //TODO add your code here
+    Card(
+        backgroundColor = MaterialTheme.colors.surface,
+        shape = RoundedCornerShape(4.dp),
+        modifier = modifier
+            .size(120.dp)
+            .padding(start = 2.dp,)
+    ) {
+        SubredditBody(subredditModel)
+    }
 }
 
 @Composable
