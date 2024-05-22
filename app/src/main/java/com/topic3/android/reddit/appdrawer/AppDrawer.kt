@@ -28,6 +28,8 @@ import androidx.compose.material.icons.filled.Star
 import androidx.constraintlayout.compose.Dimension
 import androidx.compose.material.Icon
 import androidx.constraintlayout.compose.ConstraintLayout
+import androidx.compose.material.icons.filled.AccountBox
+import androidx.compose.material.icons.filled.Home
 
 import com.topic3.android.reddit.theme.RedditThemeSettings
 
@@ -186,7 +188,18 @@ private fun ProfileInfoItem(
  */
 @Composable
 private fun AppDrawerBody(closeDrawerAction: () -> Unit) {
-  //TODO add your code here
+  Column{
+    ScreenNavigationButton(
+      icon = Icons.Filled.AccountBox,
+      label = stringResource(R.string.my_profile),
+      onClickAction = {closeDrawerAction()}
+    )
+    ScreenNavigationButton(
+      icon = Icons.Filled.Home,
+      label = stringResource(R.string.saved),
+      onClickAction = {closeDrawerAction()}
+    )
+  }
 }
 
 /**
