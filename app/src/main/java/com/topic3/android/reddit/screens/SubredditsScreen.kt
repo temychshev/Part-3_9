@@ -71,7 +71,25 @@ val communities = listOf(
 
 @Composable
 fun SubredditsScreen(modifier: Modifier = Modifier) {
-    //TODO add your code here
+    Column(
+        modifier = modifier
+            .verticalScroll(rememberScrollState())
+    ) {
+        Text(
+            modifier = modifier.padding(16.dp),
+            text = stringResource(R.string.recently_visited_subreddits),
+            fontSize = 12.sp,
+            style = MaterialTheme.typography.subtitle1
+        )
+
+        LazyRow(
+            modifier = modifier.padding(end = 16.dp)
+        ){
+            items(subreddits) { Subreddit(it)}
+        }
+
+        Communities(modifier)
+    }
 }
 
 @Composable
