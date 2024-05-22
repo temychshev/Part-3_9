@@ -30,6 +30,9 @@ import androidx.compose.material.Icon
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.compose.material.icons.filled.AccountBox
 import androidx.compose.material.icons.filled.Home
+import androidx.compose.ui.res.vectorResource
+import androidx.compose.material.icons.filled.Settings
+import androidx.compose.foundation.clickable
 
 import com.topic3.android.reddit.theme.RedditThemeSettings
 
@@ -254,7 +257,52 @@ private fun ScreenNavigationButton(
  */
 @Composable
 private fun AppDrawerFooter(modifier: Modifier = Modifier) {
-  //TODO add your code here
+  ConstraintLayout (
+    modifier = modifier
+      .fillMaxSize()
+      .padding(
+        start = 16.dp,
+        bottom = 16.dp,
+        end = 16.dp
+      )
+  ){
+    val colors = MaterialTheme.colors
+    val (settingsImage, settingText, darkModeButton) = createRefs()
+    Icon(modifier = modifier.constrainAs(settingsImage)
+    {
+      start.linkTo(parent.start)
+      bottom.linkTo(parent.bottom)
+    },
+      imageVector = Icons.Default.Settings,
+      contentDescription = stringResource(
+        id = R.string.settings
+      ),
+      tint = colors.primaryVariant
+    )
+    Text(
+      fontSize = 10.sp,
+      text = stringResource(R.string.settings),
+      style = MaterialTheme.typography.body2,
+      color = colors.primaryVariant,
+      modifier = modifier
+        .padding(start = 16.dp)
+        .constrainAs(settingText) {
+          start.linkTo(settingsImage.end)
+          centerVerticallyTo(settingsImage)
+        }
+    )
+    Icon(
+      imageVector = ImageVector.vectorResource(id = R.drawable.ic_moon),
+      contentDescription = stringResource(id = R.string.change_theme),
+      modifier = modifier
+        .clickable (onClick = { changeTheme()  })
+        .constrainAs(darkModeButton){
+          end.linkTo(parent.end)
+          bottom.linkTo(settingsImage.bottom)
+        },
+      tint = colors.primaryVariant
+    )
+  }
 }
 
 private fun changeTheme() {
