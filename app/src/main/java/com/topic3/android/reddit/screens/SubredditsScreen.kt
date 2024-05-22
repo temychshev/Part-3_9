@@ -32,6 +32,7 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import com.topic3.android.reddit.R
 import com.topic3.android.reddit.models.SubredditModel
 import androidx.compose.material.icons.Icons
+import com.topic3.android.reddit.components.BackgroundText
 
 val subreddits = listOf(
     SubredditModel(
@@ -212,7 +213,14 @@ fun Community(text: String, modifier: Modifier = Modifier, onCommunityClicked: (
     }
 }
 fun Communities(modifier: Modifier = Modifier) {
-    //TODO add your code here
+    mainCommunities.forEach{
+        Community(text = stringResource(it))
+    }
+    Spacer(modifier = modifier.height(4.dp))
+    BackgroundText(stringResource(R.string.communities))
+    communities.forEach{
+        Community(text = stringResource(it))
+    }
 }
 
 @Preview
