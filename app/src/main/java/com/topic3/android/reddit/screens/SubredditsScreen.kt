@@ -186,8 +186,30 @@ fun SubredditDescription(modifier: Modifier, @StringRes descriptionStringRes: In
 }
 
 @Composable
-fun Community(text: String, modifier: Modifier = Modifier) {
-    //TODO add your code here
+fun Community(text: String, modifier: Modifier = Modifier, onCommunityClicked: () -> Unit = {}) {
+    Row(modifier = modifier
+        .padding(start = 16.dp, top = 16.dp)
+        .fillMaxWidth()
+        .clickable { onCommunityClicked.invoke() }
+    )
+    {
+        Image(
+            bitmap = ImageBitmap.imageResource(id = R.drawable.subreddit_placeholder),
+            contentDescription = stringResource(id = R.string.community_icon),
+            modifier = modifier
+                .size(24.dp)
+                .clip(CircleShape)
+        )
+        Text(
+            fontSize = 10.sp,
+            color = MaterialTheme.colors.primaryVariant,
+            text = text,
+            fontWeight = FontWeight.Bold,
+            modifier = modifier
+                .padding(start = 16.dp)
+                .align(Alignment.CenterVertically)
+        )
+    }
 }
 fun Communities(modifier: Modifier = Modifier) {
     //TODO add your code here
